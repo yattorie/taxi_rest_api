@@ -1,17 +1,17 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .models import User
 
 
 @admin.register(User)
-class UserAdmin(admin.ModelAdmin):
+class UserAdmin(BaseUserAdmin):
     list_display = (
         'email',
-        'username',
         'first_name',
         'last_name',
-        'role',
         'phone_number',
+        'role',
         'is_active',
         'is_staff',
         'is_superuser',
@@ -30,7 +30,6 @@ class UserAdmin(admin.ModelAdmin):
 
     search_fields = (
         'email',
-        'username',
         'first_name',
         'last_name',
         'phone_number',
@@ -44,7 +43,6 @@ class UserAdmin(admin.ModelAdmin):
         ('Основная информация', {
             'fields': (
                 'email',
-                'username',
                 'password',
             )
         }),
@@ -62,8 +60,6 @@ class UserAdmin(admin.ModelAdmin):
                 'is_active',
                 'is_staff',
                 'is_superuser',
-                'groups',
-                'user_permissions',
             )
         }),
         ('Подтверждение', {
@@ -77,5 +73,23 @@ class UserAdmin(admin.ModelAdmin):
                 'date_joined',
             ),
             'classes': ('collapse',),
+        }),
+    )
+
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': (
+                'email',
+                'first_name',
+                'last_name',
+                'phone_number',
+                'age',
+                'password1',
+                'password2',
+                'is_active',
+                'is_staff',
+                'email_verified',
+            ),
         }),
     )
