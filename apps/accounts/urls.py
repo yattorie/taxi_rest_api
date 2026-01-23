@@ -18,10 +18,12 @@ user_me = UserViewSet.as_view({
 })
 
 urlpatterns = [
-    path("auth/register/", user_register, name="auth-register"),
-    path("auth/login/", TokenObtainPairView.as_view(), name="auth-login"),
-    path("auth/verify-email/", VerifyEmailView.as_view(), name="auth-verify-email"),
-    path("auth/token/refresh/", TokenRefreshView.as_view(), name="auth-token-refresh"),
-    path("auth/token/verify/", TokenVerifyView.as_view(), name="auth-token-verify"),
+    path("register/", user_register, name="auth-register"),
+    path("login/", TokenObtainPairView.as_view(), name="auth-login"),
+    path("verify-email/", VerifyEmailView.as_view(), name="auth-verify-email"),
+
+    path("token/refresh/", TokenRefreshView.as_view(), name="auth-token-refresh"),
+    path("token/verify/", TokenVerifyView.as_view(), name="auth-token-verify"),
+
     path("users/me/", user_me, name="user-me"),
 ]
