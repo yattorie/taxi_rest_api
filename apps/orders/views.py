@@ -11,7 +11,7 @@ from .serializers import (
     OrderSerializer,
     AdminOrderSerializer, TariffSerializer,
 )
-from .permissions import IsAdmin
+from .permissions import IsAdmin, IsOwner
 from apps.accounts.constants import UserRole
 from apps.orders.constants import OrderStatus
 
@@ -46,7 +46,7 @@ from apps.orders.constants import OrderStatus
     ),
 )
 class OrderViewSet(ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsOwner]
 
     def get_queryset(self):
         user = self.request.user
@@ -82,8 +82,8 @@ class OrderViewSet(ModelViewSet):
 
     @extend_schema(
         tags=['Orders'],
-        summary='Подтвердить заказ',
-        description='Подтверждение заказа (только ADMIN)',
+        summary='Подтвердить заказ (только ADMIN)',
+        description='Подтверждение заказа',
         responses={200: AdminOrderSerializer}
     )
     @action(
@@ -107,7 +107,7 @@ class OrderViewSet(ModelViewSet):
 
     @extend_schema(
         tags=['Orders'],
-        summary='Завершить заказ',
+        summary='Завершить заказ (только ADMIN)',
         description='Завершить подтверждённый заказ'
     )
     @action(
@@ -131,7 +131,7 @@ class OrderViewSet(ModelViewSet):
 
     @extend_schema(
         tags=['Orders'],
-        summary='Отменить заказ',
+        summary='Отменить заказ (только ADMIN)',
         description='Отмена заказа'
     )
     @action(
