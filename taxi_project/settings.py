@@ -149,7 +149,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
     ],
-    
+
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
 }
@@ -174,12 +174,9 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': False,
     'SEND_CONFIRMATION_EMAIL': False,
 
-    # 'ACTIVATION_URL': 'activate/{uid}/{token}/',
-
     'SERIALIZERS': {
         'user_create': 'apps.accounts.serializers.UserCreateSerializer',
         'user': 'apps.accounts.serializers.UserSerializer',
-        # 'current_user': 'apps.accounts.serializers.UserSerializer',
     },
 
 }
@@ -201,7 +198,6 @@ SIMPLE_JWT = {
     "USER_ID_FIELD": "id",
     "USER_ID_CLAIM": "user_id",
 
-
     "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
     "TOKEN_TYPE_CLAIM": "token_type",
 
@@ -217,10 +213,10 @@ else:
         'http://127.0.0.1:3000',
     ]
 
-#Настройка безопасности
-SECURE_BROWSER_XSS_FILTER = True #Защита от XSS-атак
-SECURE_CONTENT_TYPE_NOSNIFF = True # Запрет MIME-типов
-X_FRAME_OPTIONS = 'DENY' # Защита от кликджекинга
+# Настройка безопасности
+SECURE_BROWSER_XSS_FILTER = True  # Защита от XSS-атак
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Запрет MIME-типов
+X_FRAME_OPTIONS = 'DENY'  # Защита от кликджекинга
 
 # Логирование
 LOGGING = {
