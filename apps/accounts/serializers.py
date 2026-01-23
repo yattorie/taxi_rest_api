@@ -9,20 +9,11 @@ class UserCreateSerializer(BaseUserCreateSerializer):
         fields = (
             'id',
             'email',
-            'username',
             'password',
             'first_name',
             'last_name',
             'phone_number',
         )
-
-    def create(self, validated_data):
-        user = super().create(validated_data)
-        user.is_active = False
-        user.email_verified = False
-        user.save(update_fields=['is_active', 'email_verified'])
-        return user
-
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -41,5 +32,4 @@ class UserSerializer(serializers.ModelSerializer):
 
 class EmailConfirmationSerializer(serializers.Serializer):
     email = serializers.EmailField()
-    # code = serializers.CharField()
     code = serializers.CharField(max_length=6)
