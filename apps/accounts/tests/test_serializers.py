@@ -7,7 +7,6 @@ from apps.accounts.models import User
 def test_user_create_serializer_creates_inactive_user():
     data = {
         "email": "user@test.com",
-        "username": "user",
         "password": "StrongPass123!",
         "first_name": "Test",
         "last_name": "User",

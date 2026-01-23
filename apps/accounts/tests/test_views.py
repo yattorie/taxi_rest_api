@@ -7,7 +7,6 @@ from apps.accounts.models import User
 @pytest.mark.django_db
 def test_verify_email_success():
     user = User.objects.create_user(
-        username="verifyuser",
         email="verify@test.com",
         password="password123",
         phone_number="+375293333333",
