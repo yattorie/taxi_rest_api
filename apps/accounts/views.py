@@ -47,6 +47,7 @@ class VerifyEmailView(APIView):
             )
 
         user.email_verified = True
+        user.is_active = True
         user.save(update_fields=['email_verified', 'is_active'])
 
         cache.delete(key)
